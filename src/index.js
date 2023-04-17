@@ -1,14 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import React from 'react';
-
 class TodoApp extends React.Component {
-  render(){
-    return <p>{todoList[]}</p>
+  render() {
+    const todoList = JSON.parse(localStorage.getItem('todoList'));
+    return (
+      <div>
+        {todoList.map((todo) => (
+          <p key={todo.id}>{todo.text}</p>
+        ))}
+      </div>
+    );
   }
 }
 
@@ -19,6 +24,4 @@ const todoList = [
 ];
 localStorage.setItem('todoList', JSON.stringify(todoList));
 
-
-ReactDOM.render(<TodoApp/>, document.getElementById('app'));
-
+ReactDOM.render(<TodoApp />, document.getElementById('app'));
